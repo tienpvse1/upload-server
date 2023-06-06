@@ -1,0 +1,17 @@
+version: "3.6"
+
+services:
+  upload: 
+    image: tienpvse/go-upload
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: upload-server
+    environment:
+      - GO_PORT=${GO_PORT}
+      - GO_UPLOAD_DIR=${GO_UPLOAD_DIR}
+      - GO_UPLOAD_ENDPOINT=${GO_UPLOAD_ENDPOINT}
+    ports:
+      - ${GO_PORT}:${GO_PORT}
+    volumes:
+      - ./${GO_UPLOAD_DIR}/:/app/${GO_UPLOAD_DIR}/
