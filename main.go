@@ -24,9 +24,7 @@ func main() {
 	app := fiber.New(fiber.Config{})
 
 	app.Static(fmt.Sprintf("/%v", env.UPLOAD_DIR), env.UPLOAD_DIR)
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
-	}))
+	app.Use(cors.New(cors.Config{}))
 	app.Post(env.UPLOAD_ENDPOINT, upload.Upload)
 	log.Fatal(app.Listen(env.PORT))
 }
